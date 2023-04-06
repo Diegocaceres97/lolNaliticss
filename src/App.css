@@ -14,6 +14,7 @@ body {
 
 .colorLetter {
   color: var(--color-title);
+  margin-bottom: 30px;
 }
 
 .colorLetter--link:hover {
