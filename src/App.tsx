@@ -21,7 +21,7 @@ function App() {
       >
         Do you want to give more information?
       </h3>
-      <small style={{ color: "white" }}>
+      <small style={{ color: "white", fontSize: '15px' }}>
         🚀 This is the first page with AI than will to improve your skills in
         LOL🏆
       </small>
