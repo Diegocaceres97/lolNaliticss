@@ -23,8 +23,6 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
     } else {
       setActualChamps((prevChamps) => [...prevChamps, value]);
     }
-    console.warn(actualChamps);
-    console.warn(enemyChamps);
   }
 
   return (
@@ -46,7 +44,7 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
       </select>
       <div>
         {isSelectionEnemy ? (
-          <p>
+          <p style={{color: 'white'}}>
             Enemys selected:{" "}
             {enemyChamps.length > 0
               ? enemyChamps.map((name, index) => (
