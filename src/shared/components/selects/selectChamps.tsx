@@ -1,16 +1,23 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { fireMessage } from '../alerts/alert';
+import { apiProof } from '../../../models/openAI/chatGPT';
 import champsLOL from '../../../models/champs.json';
+import { ChampsLOL } from '../../../models/interfaces/champs.interface';
+import { Contexto } from '../../contexts/contextChamps';
 
 const SelectChamps = ({ isSelectionEnemy }: any) => {
 	const minimumChampsEnemies = 5;
+	const {data, setData} = useContext(Contexto);
+
 	const champs = champsLOL;
 	const [actualChamps, setActualChamps] = useState<string[]>([]);
 	const [enemyChamps, setEnemyChamps] = useState<string[]>([]);
 
-	function champSelect(event: any) {
+	async function champSelect(event: any) {
+		
 		const value = event.target.value;
+		//console.warn((await apiProof()).data?.choices[0]?.text)
 
 		if (value === champs[0].name) {
 			fireMessage({
@@ -29,10 +36,10 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 			});
 			return;
 		}
-
+		console.warn('enemy is ',isSelectionEnemy)
 		if (isSelectionEnemy) {
-			if (enemyChamps.length < minimumChampsEnemies) {
-				setEnemyChamps(prevChamps => [...prevChamps, value]);
+			if (enemyChamps && enemyChamps.length < minimumChampsEnemies) {
+				setEnemyChamps(prevChamp => [...prevChamp, value]);
 			} else {
 				fireMessage({
 					title: 'Error!',
@@ -41,10 +48,24 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 				});
 				return;
 			}
-		} else {
-			setActualChamps(prevChamps => [...prevChamps, value]);
+		}else{
+			setActualChamps(prevChamp => [...prevChamp, value]);	
 		}
+
+		/* Data para enviar por el context */
+		/* champsLOlFull = {
+			champPrincipal:actualChamps,
+			champEnemies: enemyChamps ?? []
+		} */
 	}
+
+	useEffect(()=> {
+		setData({
+			champPrincipal:actualChamps,
+			champEnemies: enemyChamps
+		});
+	
+	},[actualChamps,enemyChamps]);
 
 	const handelResetEnemiesChamps = () => {
 		setEnemyChamps([]);
