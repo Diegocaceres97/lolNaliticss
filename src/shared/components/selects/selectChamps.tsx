@@ -16,14 +16,6 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 
 	useEffect(() => {
 		setData(contextPrev => {
-			console.log(
-				'contextPrev: ',
-				contextPrev,
-				' actualChamps: ',
-				actualChamps,
-				' enemyChamps: ',
-				enemyChamps
-			);
 			return {
 				...contextPrev,
 				champPrincipal:
@@ -36,8 +28,6 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 
 	async function champSelect(event: any) {
 		const value = event.target.value;
-		//console.warn((await apiProof()).data?.choices[0]?.text)
-		console.log(value);
 
 		if (value === champs[0].name) {
 			fireMessage({
@@ -56,7 +46,7 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 			});
 			return;
 		}
-		console.warn('enemy is ', isSelectionEnemy);
+
 		if (isSelectionEnemy) {
 			if (enemyChamps && enemyChamps.length < minimumChampsEnemies) {
 				setEnemyChamps(prevChamp => [...prevChamp, value]);

@@ -2,8 +2,7 @@ import {
 	Dispatch,
 	SetStateAction,
 	createContext,
-	useState,
-	useEffect,
+	useState
 } from 'react';
 import { ChampsLOL } from '../../models/interfaces/champs.interface';
 
@@ -15,13 +14,11 @@ export const Contexto = createContext({
 });
 
 export const DatosProvider = ({ children }) => {
-	// console.log(children)
+
 	const [data, setData] = useState<ChampsLOL>({
 		champPrincipal: [],
 		champEnemies: [],
 	});
-
-	console.log(data);
 
 	return (
 		<Contexto.Provider value={{ data, setData }}>{children}</Contexto.Provider>
