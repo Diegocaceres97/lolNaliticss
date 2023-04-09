@@ -1,16 +1,29 @@
-import { useState } from 'react';
-import EnemyList from './shared/components/enemyList';
 import './App.css';
+import { useContext, useState } from 'react';
+
+import EnemyList from './shared/components/enemyList';
 import SelectChamps from './shared/components/selects/selectChamps';
+import { Contexto, DatosProvider } from './shared/contexts/contextChamps';
+//import { proof } from './models/openAI/chatGPT';
+/// <reference path="../vite-env.d.ts" />
 
 function App() {
 	const [information, setMoreInformation] = useState(false);
+	const {data, setData} = useContext(Contexto);
 
 	const popUp = () => {
 		setMoreInformation(!information);
+		//console.log(import.meta.env.PRUEBA);
 	};
 
+	const openAI = () => {
+		if (data) {
+			console.log(data);
+		  }
+	}
+
 	return (
+		<DatosProvider>
 		<div className='App'>
 			<h1 className='colorLetter'>Please select you champ: </h1>
 			<SelectChamps isSelectionEnemy={false} />
@@ -34,11 +47,13 @@ function App() {
 					marginLeft: 'auto',
 					marginTop: '15px',
 				}}
+				onClick={openAI}
 			>
 				{' '}
 				🔮 AI show me the way!
 			</button>
 		</div>
+		</DatosProvider>
 	);
 }
 
