@@ -1,30 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { Contexto } from '../../contexts/contextChamps';
 import { apiProof } from '../../../models/openAI/chatGPT';
+import { fireMessage } from '../alerts/alert';
 
 function ButtonCustom() {
-
-    const { data } = useContext(Contexto);
+	const { data } = useContext(Contexto);
 
 	const openAI = async () => {
-		console.log(((await apiProof(data)).data?.choices[0]?.text));
-	}
+		let answers = (await apiProof(data));
 
-  return (
-    <button
-					style={{
-						display: 'block',
-						borderColor: 'white',
-						marginRight: 'auto',
-						marginLeft: 'auto',
-						marginTop: '15px',
-					}}
-					onClick={openAI}
-				>
-					{' '}
-					🔮 AI show me the way!
-				</button>
-  )
+		fireMessage({ html:answers , title: 'Good luck!🍀', confirmButtonText: 'Ready! 🤘🏻' });
+	};
+
+	return (
+		<button
+			style={{
+				display: 'block',
+				borderColor: 'white',
+				marginRight: 'auto',
+				marginLeft: 'auto',
+				marginTop: '15px',
+			}}
+			onClick={openAI}
+		>
+			{' '}
+			🔮 AI show me the way!
+		</button>
+	);
 }
 
-export default ButtonCustom
+export default ButtonCustom;
