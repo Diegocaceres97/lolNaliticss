@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsArrowRepeat } from 'react-icons/bs';
 import { fireMessage } from '../alerts/alert';
-import { apiProof } from '../../../models/openAI/chatGPT';
+// import { apiProof } from '../../../models/openAI/chatGPT';
 import champsLOL from '../../../models/champs.json';
-import { ChampsLOL } from '../../../models/interfaces/champs.interface';
+// import { ChampsLOL } from '../../../models/interfaces/champs.interface';
 import { Contexto } from '../../contexts/contextChamps';
 
 const SelectChamps = ({ isSelectionEnemy }: any) => {
@@ -14,9 +14,30 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 	const [actualChamps, setActualChamps] = useState<string[]>([]);
 	const [enemyChamps, setEnemyChamps] = useState<string[]>([]);
 
+	useEffect(() => {
+		setData(contextPrev => {
+			console.log(
+				'contextPrev: ',
+				contextPrev,
+				' actualChamps: ',
+				actualChamps,
+				' enemyChamps: ',
+				enemyChamps
+			);
+			return {
+				...contextPrev,
+				champPrincipal:
+					actualChamps.length === 0 ? contextPrev.champPrincipal : actualChamps,
+				champEnemies:
+					enemyChamps.length === 0 ? contextPrev.champEnemies : enemyChamps,
+			};
+		});
+	}, [actualChamps, enemyChamps]);
+
 	async function champSelect(event: any) {
 		const value = event.target.value;
 		//console.warn((await apiProof()).data?.choices[0]?.text)
+		console.log(value);
 
 		if (value === champs[0].name) {
 			fireMessage({
@@ -50,23 +71,16 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 		} else {
 			setActualChamps(prevChamp => [...prevChamp, value]);
 		}
-
-		/* Data para enviar por el context */
-		/* champsLOlFull = {
-			champPrincipal:actualChamps,
-			champEnemies: enemyChamps ?? []
-		} */
 	}
-
-	useEffect(() => {
-		setData({
-			champPrincipal: actualChamps,
-			champEnemies: enemyChamps,
-		});
-	}, [actualChamps, enemyChamps]);
 
 	const handelResetEnemiesChamps = () => {
 		setEnemyChamps([]);
+		setData(contextPrev => {
+			return {
+				...contextPrev,
+				champEnemies: [],
+			};
+		});
 	};
 
 	return (

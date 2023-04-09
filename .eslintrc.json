@@ -18,6 +18,8 @@
 	},
 	"plugins": ["react", "@typescript-eslint"],
 	"rules": {
-		"quotes": ["error", "single"]
+		"quotes": ["error", "single"],
+		"react/prop-types": "off",
+		"react/display-name": "off"
 	}
 }
