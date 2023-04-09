@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { BsArrowRepeat } from 'react-icons/bs';
 import { fireMessage } from '../alerts/alert';
 import champsLOL from '../../../models/champs.json';
 
@@ -68,8 +68,11 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 				))}
 			</select>
 			{isSelectionEnemy && (
-				<button style={{ marginLeft: 7 }} onClick={handelResetEnemiesChamps}>
-					Reset
+				<button
+					style={{ marginLeft: 7, height: 36, lineHeight: '0px' }}
+					onClick={handelResetEnemiesChamps}
+				>
+					<BsArrowRepeat /> Reset
 				</button>
 			)}
 			<div>
