@@ -2,7 +2,7 @@ import { Configuration, OpenAIApi } from 'openai';
 import { ChampsLOL } from '../interfaces/champs.interface';
 
 const configuration = new Configuration({
-	apiKey: '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',
+	apiKey: import.meta.env.VITE_REACT_API_URL,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -21,7 +21,7 @@ export async function apiProof({ champPrincipal, champEnemies }: ChampsLOL) {
 		stop: ['\n'],
 	});
 
-	return formatResponse(response);;
+	return formatResponse(response);
 }
 
 function promptEngine(champPrincipal: string[], champEnemies?: string[]) {
@@ -51,5 +51,5 @@ function formatResponse(response) {
 	return `
 	<h3>⚡️ ${answerSeparately[0]}</h3>
 	<h3>🏪 ${answerSeparately[1]}</h3>
-	`
+	`;
 }
