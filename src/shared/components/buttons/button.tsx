@@ -1,15 +1,34 @@
 import React, { useContext } from 'react';
 import { Contexto } from '../../contexts/contextChamps';
 import { apiProof } from '../../../models/openAI/chatGPT';
-import { fireMessage } from '../alerts/alert';
+import { fireMessage, fireSpinner } from '../alerts/alert';
 
 function ButtonCustom() {
 	const { data } = useContext(Contexto);
-
+	let answers = '';
+	console.log(data)
 	const openAI = async () => {
-		let answers = (await apiProof(data));
+		fireSpinner(true);
+		try {
+			answers = await apiProof(data);
+		} catch (error) {
+			console.error(error);
+			fireMessage({
+				text: "something is wrong, but it's not your fault, sorry!!",
+				title: 'Error!🫤',
+				confirmButtonText: 'Okay',
+			});
+		} finally {
+			fireSpinner(false);
 
-		fireMessage({ html:answers , title: 'Good luck!🍀', confirmButtonText: 'Ready! 🤘🏻' });
+			if (answers) {
+				fireMessage({
+					html: answers,
+					title: 'Good luck!🍀',
+					confirmButtonText: 'Ready! 🤘🏻',
+				});
+			}
+		}
 	};
 
 	return (
@@ -21,6 +40,10 @@ function ButtonCustom() {
 				marginLeft: 'auto',
 				marginTop: '15px',
 			}}
+			disabled={
+				data.champPrincipal.length < 1 || 
+				data.champPrincipal[data.champPrincipal.length - 1] === '0'
+			}
 			onClick={openAI}
 		>
 			{' '}
