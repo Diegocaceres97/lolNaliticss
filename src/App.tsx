@@ -17,7 +17,7 @@ function App() {
 	return (
 		<DatosProvider>
 			<div className='App'>
-				<h1 className='colorLetter'>Please select you champ: </h1>
+				<h1 className='colorLetter'>Please select your champ: </h1>
 
 				<SelectChamps isSelectionEnemy={false} />
 				<h3
