@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsArrowRepeat } from 'react-icons/bs';
 import { fireMessage } from '../alerts/alert';
-// import { apiProof } from '../../../models/openAI/chatGPT';
 import champsLOL from '../../../models/champs.json';
-// import { ChampsLOL } from '../../../models/interfaces/champs.interface';
 import { Contexto } from '../../contexts/contextChamps';
 
 const SelectChamps = ({ isSelectionEnemy }: any) => {

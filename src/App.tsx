@@ -6,9 +6,6 @@ import SelectChamps from './shared/components/selects/selectChamps';
 import { DatosProvider } from './shared/contexts/contextChamps';
 import ButtonCustom from './shared/components/buttons/button';
 
-//import { proof } from './models/openAI/chatGPT';
-/// <reference path="../vite-env.d.ts" />
-
 function App() {
 	const [information, setMoreInformation] = useState(false);
 	
