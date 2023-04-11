@@ -27,7 +27,15 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 	async function champSelect(event: any) {
 		const value = event.target.value;
 
-		if (value === champs[0].name) {
+		if (value === champs[0].name && !isSelectionEnemy) {
+			setActualChamps(['0']);
+			fireMessage({
+				title: 'Error!',
+				text: 'Please, choose another option',
+				icon: 'error',
+			});
+			return;
+		} else if(value === champs[0].name){
 			fireMessage({
 				title: 'Error!',
 				text: 'Please, choose another option',
