@@ -1,15 +1,30 @@
-import { useState } from 'react';
-
+import { useContext, useEffect, useState } from 'react';
+import { BsArrowRepeat } from 'react-icons/bs';
 import { fireMessage } from '../alerts/alert';
 import champsLOL from '../../../models/champs.json';
+import { Contexto } from '../../contexts/contextChamps';
 
 const SelectChamps = ({ isSelectionEnemy }: any) => {
 	const minimumChampsEnemies = 5;
+	const { data, setData } = useContext(Contexto);
+
 	const champs = champsLOL;
 	const [actualChamps, setActualChamps] = useState<string[]>([]);
 	const [enemyChamps, setEnemyChamps] = useState<string[]>([]);
 
-	function champSelect(event: any) {
+	useEffect(() => {
+		setData(contextPrev => {
+			return {
+				...contextPrev,
+				champPrincipal:
+					actualChamps.length === 0 ? contextPrev.champPrincipal : actualChamps,
+				champEnemies:
+					enemyChamps.length === 0 ? contextPrev.champEnemies : enemyChamps,
+			};
+		});
+	}, [actualChamps, enemyChamps]);
+
+	async function champSelect(event: any) {
 		const value = event.target.value;
 
 		if (value === champs[0].name) {
@@ -31,8 +46,8 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 		}
 
 		if (isSelectionEnemy) {
-			if (enemyChamps.length < minimumChampsEnemies) {
-				setEnemyChamps(prevChamps => [...prevChamps, value]);
+			if (enemyChamps && enemyChamps.length < minimumChampsEnemies) {
+				setEnemyChamps(prevChamp => [...prevChamp, value]);
 			} else {
 				fireMessage({
 					title: 'Error!',
@@ -42,12 +57,18 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 				return;
 			}
 		} else {
-			setActualChamps(prevChamps => [...prevChamps, value]);
+			setActualChamps(prevChamp => [...prevChamp, value]);
 		}
 	}
 
 	const handelResetEnemiesChamps = () => {
 		setEnemyChamps([]);
+		setData(contextPrev => {
+			return {
+				...contextPrev,
+				champEnemies: [],
+			};
+		});
 	};
 
 	return (
@@ -68,8 +89,11 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 				))}
 			</select>
 			{isSelectionEnemy && (
-				<button style={{ marginLeft: 7 }} onClick={handelResetEnemiesChamps}>
-					Reset
+				<button
+					style={{ marginLeft: 7, height: 36, lineHeight: '0px' }}
+					onClick={handelResetEnemiesChamps}
+				>
+					<BsArrowRepeat /> Reset
 				</button>
 			)}
 			<div>
