@@ -6,7 +6,6 @@ import { fireMessage, fireSpinner } from '../alerts/alert';
 function ButtonCustom() {
 	const { data } = useContext(Contexto);
 	let answers = '';
-	console.log(data)
 	const openAI = async () => {
 		fireSpinner(true);
 		try {
