@@ -1,40 +1,68 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import EnemyList from './shared/components/enemyList';
 import SelectChamps from './shared/components/selects/selectChamps';
 import { DatosProvider } from './shared/contexts/contextChamps';
 import ButtonCustom from './shared/components/buttons/button';
+import { useTranslation } from 'react-i18next';
 
 function App() {
 	const [information, setMoreInformation] = useState(false);
-	
+	const [idiom, setIdiom] = useState(localStorage.getItem('lng') || 'en');
+	const { t, i18n } = useTranslation();
+
+	useEffect(() => {
+		i18n.changeLanguage(idiom);
+		localStorage.setItem('lng',idiom);
+	},[idiom]);
 
 	const popUp = () => {
 		setMoreInformation(!information);
 	};
 
+	function changeLan() {
+		if (idiom === 'en') {
+			setIdiom('es');
+		} else {
+			setIdiom('en');
+		}
+	}
+
 	return (
 		<DatosProvider>
 			<div className='App'>
-				<h1 className='colorLetter'>Please select your champ: </h1>
+				<button
+					style={{
+						position: 'absolute',
+						top: '20px',
+						height: '1.5rem',
+						width: '2rem',
+						margin: '0 auto',
+						fontSize: '10px',
+						padding: '1px',
+					}}
+					onClick={()=> changeLan()}
+				>
+					{idiom === 'en' ? 'ES🇪🇸' : 'EN🇺🇸'}
+				</button>
 
+				<h1 className='colorLetter'> {t('titlePrincipal')} </h1>
 				<SelectChamps isSelectionEnemy={false} />
 				<h3
 					className='colorLetter colorLetter--link'
 					style={{ cursor: 'pointer', marginTop: '20px' }}
 					onClick={popUp}
 				>
-					Do you want to give more information?
+					{t('moreInformation')}
 				</h3>
 				<small style={{ color: 'white', fontSize: '15px' }}>
-					🚀 This is the first page with AI than will to improve your skills in
-					LOL🏆
+					🚀 {t('parragraphIAPublicity')} 🏆
 				</small>
 				{information ? <EnemyList /> : <></>}
-				<ButtonCustom/>
+				<ButtonCustom text={t('buttonAction')} />
 			</div>
-			</DatosProvider>
+		</DatosProvider>
 	);
 }
 

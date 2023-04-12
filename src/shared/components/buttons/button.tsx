@@ -3,10 +3,9 @@ import { Contexto } from '../../contexts/contextChamps';
 import { apiProof } from '../../../models/openAI/chatGPT';
 import { fireMessage, fireSpinner } from '../alerts/alert';
 
-function ButtonCustom() {
+function ButtonCustom({text}:any) {
 	const { data } = useContext(Contexto);
 	let answers = '';
-	console.log(data)
 	const openAI = async () => {
 		fireSpinner(true);
 		try {
@@ -46,8 +45,8 @@ function ButtonCustom() {
 			}
 			onClick={openAI}
 		>
-			{' '}
-			🔮 AI show me the way!
+			{text}
+			
 		</button>
 	);
 }

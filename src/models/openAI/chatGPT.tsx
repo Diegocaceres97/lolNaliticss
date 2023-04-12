@@ -55,6 +55,6 @@ function formatResponse(response) {
 
 	return `
 	<h3>⚡️ ${answerSeparately[0]}</h3>
-	<h3>🏪 ${answerSeparately[1]}</h3>
+	<h3>⚔️ ${answerSeparately[1]}</h3>
 	`;
 }
