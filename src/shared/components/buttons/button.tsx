@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { Contexto } from '../../contexts/contextChamps';
 import { apiProof } from '../../../models/openAI/chatGPT';
 import { fireMessage, fireSpinner } from '../alerts/alert';
+import { useTranslation } from 'react-i18next';
 
-function ButtonCustom() {
+function ButtonCustom({text}:any) {
+	const { t } = useTranslation();
 	const { data } = useContext(Contexto);
 	let answers = '';
 	const openAI = async () => {
@@ -13,8 +15,8 @@ function ButtonCustom() {
 		} catch (error) {
 			console.error(error);
 			fireMessage({
-				text: "something is wrong, but it's not your fault, sorry!!",
-				title: 'Error!🫤',
+				text: t('messageError'),
+				title: t('titleError'),
 				confirmButtonText: 'Okay',
 			});
 		} finally {
@@ -23,7 +25,7 @@ function ButtonCustom() {
 			if (answers) {
 				fireMessage({
 					html: answers,
-					title: 'Good luck!🍀',
+					title: t('titleSuccess'),
 					confirmButtonText: 'Ready! 🤘🏻',
 				});
 			}
@@ -45,8 +47,8 @@ function ButtonCustom() {
 			}
 			onClick={openAI}
 		>
-			{' '}
-			🔮 AI show me the way!
+			{text}
+			
 		</button>
 	);
 }
