@@ -6,6 +6,7 @@ import SelectChamps from './shared/components/selects/selectChamps';
 import { DatosProvider } from './shared/contexts/contextChamps';
 import ButtonCustom from './shared/components/buttons/button';
 import { useTranslation } from 'react-i18next';
+import Footer from './shared/components/footer/footer';
 
 function App() {
 	const [information, setMoreInformation] = useState(false);
@@ -36,9 +37,11 @@ function App() {
 					style={{
 						position: 'absolute',
 						top: '20px',
+						left: '0',
+						right:'0',
 						height: '1.5rem',
 						width: '2rem',
-						margin: '0 auto',
+						margin: 'auto',
 						fontSize: '10px',
 						padding: '1px',
 						borderColor: 'var(--color-title)'
@@ -63,6 +66,7 @@ function App() {
 				{information ? <EnemyList /> : <></>}
 				<ButtonCustom text={t('buttonAction')} />
 			</div>
+			<Footer/>
 		</DatosProvider>
 	);
 }

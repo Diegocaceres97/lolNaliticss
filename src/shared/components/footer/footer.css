@@ -1,0 +1,16 @@
+.Footer {
+    position: absolute;
+    bottom: 0.5px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    color: var(--color-title);
+    cursor: pointer;
+}
+
+.Footer:hover {
+    background-color: var(--color-title);
+    border-color: var(--color-title);
+    color: black;
+}
