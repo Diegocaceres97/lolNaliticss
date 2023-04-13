@@ -2,5 +2,10 @@
     "titlePrincipal": "Selecciona tu campeón:",
     "moreInformation": "¿Quieres poner más información?",
     "parragraphIAPublicity": "Esta es la primera web con IA para mejorar tus habilidades en LOL",
-    "buttonAction": "🔮 IA muéstrame el camino!"
+    "buttonAction": "🔮 IA muéstrame el camino!",
+    "titleError" : "¡Error! 🫤",
+    "titleSuccess": "Buena suerte!🍀",
+    "messageError": "Algo va mal, pero no es tu culpa, disculpanos!!",
+    "enemySelection": "Enemigo",
+    "enemiesSelected": "Enemigos seleccionados"
 }

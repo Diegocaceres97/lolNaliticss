@@ -2,5 +2,10 @@
     "titlePrincipal": "Please select your champ:",
     "moreInformation": "Do you want to give more information?",
     "parragraphIAPublicity": "This is the first page with AI that will improve your skill in LOL",
-    "buttonAction": "🔮 AI show me the way!"
+    "buttonAction": "🔮 AI show me the way!",
+    "titleError" : "Error!🫤",
+    "titleSuccess": "Good luck!🍀",
+    "messageError": "something is wrong, but it's not your fault, sorry!!",
+    "enemySelection": "Enemy",
+    "enemiesSelected" : "Enemies selected"
 }

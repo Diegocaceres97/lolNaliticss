@@ -3,10 +3,12 @@ import { BsArrowRepeat } from 'react-icons/bs';
 import { fireMessage } from '../alerts/alert';
 import champsLOL from '../../../models/champs.json';
 import { Contexto } from '../../contexts/contextChamps';
+import { useTranslation } from 'react-i18next';
 
 const SelectChamps = ({ isSelectionEnemy }: any) => {
 	const minimumChampsEnemies = 5;
 	const { data, setData } = useContext(Contexto);
+	const { t } = useTranslation();
 
 	const champs = champsLOL;
 	const [actualChamps, setActualChamps] = useState<string[]>([]);
@@ -107,7 +109,7 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 			<div>
 				{isSelectionEnemy ? (
 					<p style={{ color: 'white' }}>
-						Enemys selected:{' '}
+						{t('enemiesSelected')}:{' '}
 						{enemyChamps.length > 0 ? (
 							enemyChamps.map((name, index) => <b key={index}>{name}, </b>)
 						) : (

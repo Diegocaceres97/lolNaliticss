@@ -41,6 +41,7 @@ function App() {
 						margin: '0 auto',
 						fontSize: '10px',
 						padding: '1px',
+						borderColor: 'var(--color-title)'
 					}}
 					onClick={()=> changeLan()}
 				>
