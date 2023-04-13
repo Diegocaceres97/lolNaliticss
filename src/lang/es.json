@@ -7,5 +7,7 @@
     "titleSuccess": "Buena suerte!🍀",
     "messageError": "Algo va mal, pero no es tu culpa, disculpanos!!",
     "enemySelection": "Enemigo",
-    "enemiesSelected": "Enemigos seleccionados"
+    "enemiesSelected": "Enemigos seleccionados",
+    "nextSteps": "¡Conoce nuestro siguiente paso! 🤭",
+    "nextStepsBody" : "Nuestro próximo paso es mostrar información más precisa y completa, después, estilizar el resultado conjunto a imágenes. (paso 1/10)"
 }
