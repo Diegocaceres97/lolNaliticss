@@ -9,7 +9,9 @@ const Footer = ()  => {
 
     const steps = () => {
         fireMessage({
-            text: t('nextStepsBody'),
+            html: `
+            <p>${t('nextStepsBody')}: <a Target="_blank" href="https://github.com/Diegocaceres97/lolNaliticss">Github repository</a></p>
+            `,
             confirmButtonText: 'Okay 🫶🏻'
         })
     }
