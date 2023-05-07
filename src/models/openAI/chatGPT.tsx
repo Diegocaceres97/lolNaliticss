@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai';
 import { ChampsLOL } from '../interfaces/champs.interface';
+import { searchItem } from '../api_Lol/searchItems';
 
 const configuration = new Configuration({
 	apiKey: import.meta.env.VITE_REACT_API_URL,
@@ -32,13 +33,13 @@ function promptEngine(champPrincipal: string[], champEnemies?: string[]) {
 
 	if (champEnemies && champEnemies.length > 0) {
 		response = `Hi, you are an expert in league of legends and you picked ${principal} as your champion, your opponents are: ${enemies}. Please provide your answers in a single string and indicate each answer with Runes (for the first answer) and Elements (for the second answer), split each one inside the answer with | ,
-		example of string format for answer: runes: rune1, rune2... | elements: element1, element2. Attention: I need runes and elements without exception.
-		\n\nQ: (I pick Amumu as the champ and my enemies are: Aatrox, Anivia, Blitzcrank, Elise, Hecarim)first question: What runes (secondary and principal runes completely) do you recommend for this game?, second question:What items do you recommend?\nA: Runes: Domination: Electrocute, Taste of Blood | Elements: Sunfire Cape, Liandry's Torment, Mercury's Treads, Abyssal Mask, Guardian Angel.
+		example of string format for answer: runes:, rune1, rune2... | elements:, element1, element2 Attention: I need runes and elements without exception.
+		\n\nQ: (I pick Amumu as the champ and my enemies are: Aatrox, Anivia, Blitzcrank, Elise, Hecarim)first question: What runes (secondary and principal runes completely) do you recommend for this game?, second question:What items do you recommend?\nA: Runes:, Domination: Electrocute, Taste of Blood | Elements:, Sunfire Cape, Liandry's Torment, Mercury's Treads, Abyssal Mask, Guardian Angel
 		\n\nQ: first question: What runes (secondary and principal runes completely) do you recommend for this game?, second question:What items do you recommend?\nA:`;
 	} else {
 		response = `Hi, you are an expert in league of legends and you picked ${principal} as your champion. Please provide your answers in a single string and indicate each answer with Runes (for the first answer) and Elements (for the second answer), split each one inside the answer with | ,  
-		example of string format for answer: runes: rune1, rune2... | elements: element1, element2. Attention: I need runes and elements without exception.
-		\n\nQ: (I pick Amumu as the champ)first question: What runes (secondary and principal runes completely) do you recommend for this game?, second question:What items do you recommend?\nA: Runes: Domination: Electrocute, Taste of Blood | Elements: Sunfire Cape, Liandry's Torment, Mercury's Treads, Abyssal Mask, Guardian Angel.
+		example of string format for answer: runes:, rune1, rune2... | elements:, element1, element2 Attention: I need runes and elements without exception.
+		\n\nQ: (I pick Amumu as the champ)first question: What runes (secondary and principal runes completely) do you recommend for this game?, second question:What items do you recommend?\nA: Runes:, Domination: Electrocute, Taste of Blood | Elements:, Sunfire Cape, Liandry's Torment, Mercury's Treads, Abyssal Mask, Guardian Angel
 		\n\nQ: first question: What runes (secondary and principal runes completely) do you recommend for this game?, second question:What items do you recommend?\nA:`;
 	}
 	return response;
@@ -52,6 +53,8 @@ function formatResponse(response) {
 		answers = response?.data?.choices[0]?.text;
 		answerSeparately = answers.split('|');
 	}
+
+	searchItem(answerSeparately[1].split(','));
 
 	return `
 	<h3>⚡️ ${answerSeparately[0]}</h3>
