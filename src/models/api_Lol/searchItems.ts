@@ -6,8 +6,6 @@ export async function searchItem(elements: string[]) {
     const data = await info.data;
     const items = Object.values(data);
 
-    console.log(elements)
-
     elements.forEach((element, index) => {
       if(index > 0){  
         console.log(element.trim())
@@ -20,9 +18,6 @@ export async function searchItem(elements: string[]) {
       });
 
     if(idElements.length > 0) {
-
-        idElements.forEach(elementIn => console.warn(elementIn))
-
         return idElements;
     } 
 }

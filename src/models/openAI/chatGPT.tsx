@@ -21,7 +21,7 @@ export async function apiProof({ champPrincipal, champEnemies }: ChampsLOL) {
 		stop: ['\n'],
 	});
 
-	return formatResponse(response);
+	return await formatResponse(response);
 }
 
 function promptEngine(champPrincipal: string[], champEnemies?: string[]) {
@@ -45,7 +45,7 @@ function promptEngine(champPrincipal: string[], champEnemies?: string[]) {
 	return response;
 }
 
-function formatResponse(response) {
+async function formatResponse(response) {
 	let answers = '';
 	let answerSeparately = [];
 
@@ -54,10 +54,17 @@ function formatResponse(response) {
 		answerSeparately = answers.split('|');
 	}
 
-	searchItem(answerSeparately[1].split(','));
+	const items = answerSeparately[1].split(',');
+	const itemsLol = await searchItem(items);
+
 
 	return `
 	<h3>⚡️ ${answerSeparately[0]}</h3>
-	<h3>⚔️ ${answerSeparately[1]}</h3>
+	<h3>💥 Items: </h3>
+	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[0]}" alt=${items[1]} />
+	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[1]}" alt=${items[2]} title="prueba" />
+	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[2]}" alt=${items[3]} title="prueba" />
+	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[3]}" alt=${items[4]}/>
+	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[4]}" alt=${items[5]}/>
 	`;
 }
