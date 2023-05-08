@@ -7,7 +7,8 @@ const Footer = ()  => {
 
     const { t } = useTranslation();
 
-    const steps = () => {
+    const steps =async() => {
+
         fireMessage({
             html: `
             <p>${t('nextStepsBody')}: <a Target="_blank" href="https://github.com/Diegocaceres97/lolNaliticss">Github repository</a></p>
