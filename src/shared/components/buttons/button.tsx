@@ -13,7 +13,6 @@ function ButtonCustom({text}:any) {
 		try {
 			answers = await apiProof(data);
 		} catch (error) {
-			console.error(error);
 			fireMessage({
 				text: t('messageError'),
 				title: t('titleError'),

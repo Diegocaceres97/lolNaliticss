@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsArrowRepeat } from 'react-icons/bs';
 import { fireMessage } from '../alerts/alert';
-import champsLOL from '../../../models/champs.json';
+import champsLOL from '../../../models/json/champs.json';
 import { Contexto } from '../../contexts/contextChamps';
 import { useTranslation } from 'react-i18next';
 
