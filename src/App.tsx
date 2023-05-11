@@ -1,12 +1,9 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 
-import EnemyList from './shared/components/enemyList';
-import SelectChamps from './shared/components/selects/selectChamps';
 import { DatosProvider } from './shared/contexts/contextChamps';
-import ButtonCustom from './shared/components/buttons/button';
+import {ButtonCustom, EnemyList,Footer,SelectChamps} from './shared/components';
 import { useTranslation } from 'react-i18next';
-import Footer from './shared/components/footer/footer';
 
 function App() {
 	const [information, setMoreInformation] = useState(false);
