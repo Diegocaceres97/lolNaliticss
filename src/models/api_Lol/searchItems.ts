@@ -1,7 +1,7 @@
 export async function searchItem(elements: string[]) {
     const idElements: string[] = [];
 
-    const response = await fetch('http://ddragon.leagueoflegends.com/cdn/13.9.1/data/en_US/item.json');
+    const response = await fetch('https://ddragon.leagueoflegends.com/cdn/13.9.1/data/en_US/item.json');
     const info = await response.json();
     const data = await info.data;
     const items = Object.values(data);
