@@ -7,8 +7,7 @@ export async function searchItem(elements: string[]) {
     const items = Object.values(data);
 
     elements.forEach((element, index) => {
-      if(index > 0){  
-        console.log(element.trim())
+      if(index > 0){
         const foundItem = items.find(item => item['name'] == element.trim());
         if (foundItem) {
           idElements.push(foundItem['image']['full']);
