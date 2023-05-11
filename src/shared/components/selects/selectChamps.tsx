@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsArrowRepeat } from 'react-icons/bs';
-import { fireMessage } from '../alerts/alert';
+import { fireMessage } from '../../components';
 import champsLOL from '../../../models/json/champs.json';
 import { Contexto } from '../../contexts/contextChamps';
 import { useTranslation } from 'react-i18next';
 
-const SelectChamps = ({ isSelectionEnemy }: any) => {
+export const SelectChamps = ({ isSelectionEnemy }: any) => {
 	const minimumChampsEnemies = 5;
 	const { data, setData } = useContext(Contexto);
 	const { t } = useTranslation();
@@ -122,4 +122,3 @@ const SelectChamps = ({ isSelectionEnemy }: any) => {
 	);
 };
 
-export default SelectChamps;

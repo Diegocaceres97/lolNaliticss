@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Contexto } from '../../contexts/contextChamps';
 import { apiProof } from '../../../models/openAI/chatGPT';
-import { fireMessage, fireSpinner } from '../alerts/alert';
+import { fireMessage, fireSpinner } from '../../components';
 import { useTranslation } from 'react-i18next';
 
-function ButtonCustom({text}:any) {
+export function ButtonCustom({text}:any) {
 	const { t } = useTranslation();
 	const { data } = useContext(Contexto);
 	let answers = '';
@@ -51,5 +51,3 @@ function ButtonCustom({text}:any) {
 		</button>
 	);
 }
-
-export default ButtonCustom;

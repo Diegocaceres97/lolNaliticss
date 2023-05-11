@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import SelectChamps from './selects/selectChamps';
+import {SelectChamps} from '../../components';
 
-function EnemyList() {
+export function EnemyList() {
 	const { t } = useTranslation();
 	return (
 		<div style={{ marginTop: '15px' }}>
@@ -13,4 +13,3 @@ function EnemyList() {
 	);
 }
 
-export default EnemyList;

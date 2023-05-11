@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 
 import './footer.css';
-import { fireMessage } from "../alerts/alert";
+import { fireMessage } from "../../components";
 
-const Footer = ()  => {
+export const Footer = ()  => {
 
     const { t } = useTranslation();
 
@@ -21,5 +21,3 @@ const Footer = ()  => {
    
         
 }
-
-export default Footer;
