@@ -20,3 +20,5 @@
 <li>Remix 🖊️</li>
 <li>Sweetalert2 🧵</li>
 </ul>
+
+<em>🫶🏻 This project is totally free for working on and improve</em>
