@@ -1,0 +1,1 @@
+export {ResultSearched} from './results-searched/ResultSearched';
