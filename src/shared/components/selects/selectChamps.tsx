@@ -28,7 +28,6 @@ export const SelectChamps = ({ isSelectionEnemy }: any) => {
 
 	async function champSelect(event: any) {
 		const value = event.target.value;
-
 		if (value === champs[0].name && !isSelectionEnemy) {
 			setActualChamps(['0']);
 			fireMessage({
