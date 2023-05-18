@@ -18,6 +18,7 @@ function Index() {
 	const lastChampPrincipal = champPrincipal?.length-1;
 
 	useEffect(() => {
+		console.warn(champPrincipal[lastChampPrincipal])
 		i18n.changeLanguage(idiom);
 		localStorage.setItem('lng', idiom);
 	}, [idiom]);
@@ -57,7 +58,7 @@ function Index() {
 
 				<h1 className='colorLetter'> {t('titlePrincipal')} </h1>
 				{
-                    champPrincipal.length>0 ? 
+                    champPrincipal.length>0  && champPrincipal[lastChampPrincipal] != 0? 
                     <img
 					src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champPrincipal[lastChampPrincipal]}_0.jpg`}
 					style={{
@@ -68,7 +69,17 @@ function Index() {
                     width='100px'
                     height='100px'
 					alt='champion'
-				/> : <></>
+				/> :  <img
+				src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_0.jpg`}
+				style={{
+					display: 'block',
+					margin: '20px auto',
+					borderRadius: '50%'
+				}}
+				width='100px'
+				height='100px'
+				alt='champion'
+			/>
                 }
 				<SelectChamps isSelectionEnemy={false} />
 				<h3
