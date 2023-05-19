@@ -61,10 +61,27 @@ async function formatResponse(response) {
 	return `
 	<h3>⚡️ ${answerSeparately[0]}</h3>
 	<h3>💥 Items: </h3>
+	<ul>
+	<li>
 	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[0]}" alt=${items[1]} />
-	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[1]}" alt=${items[2]} title="prueba" />
-	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[2]}" alt=${items[3]} title="prueba" />
+	<p>${items[1]}</p>
+	</li>
+	<li>
+	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[1]}" alt=${items[2]} />
+	<p>${items[2]}</p>
+	</li>
+	<li>
+	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[2]}" alt=${items[3]} />
+	<p>${items[3]}</p>
+	</li>
+	<li>
 	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[3]}" alt=${items[4]}/>
+	<p>${items[4]}</p>
+	</li>
+	<li>
 	<img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${itemsLol[4]}" alt=${items[5]}/>
+	<p>${items[5]}</p>
+	</li>
+	</ul>
 	`;
 }
